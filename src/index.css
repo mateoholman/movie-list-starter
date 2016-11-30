@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.moviePoster img {
+  width: 200px;
+  height: 300px;
+}

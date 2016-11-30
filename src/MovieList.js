@@ -5,7 +5,7 @@ class MovieList extends Component {
   render() {
     const { movies } = this.props;
     return(
-      <ul className='movie-list'>
+      <div className='container'>
         {movies.map(movie => {
           return(
             <Movie
@@ -17,7 +17,7 @@ class MovieList extends Component {
           )
         }
       )}
-      </ul>
+      </div>
     );
   }
 }//End MovieList

@@ -2,8 +2,27 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #436280;
 }
 
+h1 {
+  font-family: 'Inknut Antiqua', serif;
+  color: #dbe4ed;
+}
+
+.box {
+  border: solid black 2px;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 5px;
+  background-color: #a3bad2;
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+}
+
+.container {
+  display: inline-flex;
+}
 .moviePoster img {
   width: 200px;
   height: 300px;

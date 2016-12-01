@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
-import axios from 'axios';
+import SearchBar from './SearchBar';
+// import axios from 'axios';
 
 class App extends Component {
 
@@ -22,10 +23,17 @@ class App extends Component {
     };
   }
 
+
+
+  handleSearchBarClick(event) {
+
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Awesome Movies</h1>
+        <SearchBar />
         <MovieList movies={this.state.movies} />
       </div>
     );

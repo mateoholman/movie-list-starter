@@ -1,22 +1,40 @@
 {
-  "name": "movie-list-starter",
+  "name": "movie-list-server",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.7.0"
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
   },
   "dependencies": {
-    "axios": "^0.15.3",
-    "bootstrap": "^3.3.7",
-    "react": "^15.4.0",
-    "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.0",
-    "react-router": "^4.0.0-alpha.5"
+    "babel-cli": "^6.18.0",
+    "babel-core": "6.14.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "body-parser": "^1.15.2",
+    "chalk": "^1.1.3",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "babel-node server.js",
+    "client": "babel-node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+  },
+  "engines": {
+    "node": "6.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "react-scripts": "0.7.0",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "nodemon": "^1.11.0"
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
+import InfoPanel from './InfoPanel';
 // import axios from 'axios';
 
 class App extends Component {
@@ -8,24 +9,48 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      showInfoPanel: false,
+      movie: {
+        _id: '',
+        title: '',
+        director: '',
+        poster: '',
+        plot: ''
+      },
       movies: [
         {
           _id: '1',
           title: 'Princess Mononoke',
-          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYTU2YjNmN2UtMTkyYS00YTFhLWJkM2QtODNhODE0OGQzMDQ3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg'
+          director: 'Hayao Miyazaki',
+          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYTU2YjNmN2UtMTkyYS00YTFhLWJkM2QtODNhODE0OGQzMDQ3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
+          plot: "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."
         },
         {
           _id: '2',
           title: 'Total Recall',
-          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYzU1YmJjMGEtMjY4Yy00MTFlLWE3NTUtNzI3YjkwZTMxZjZmXkEyXkFqcGdeQXVyNDc2NjEyMw@@._V1_SY1000_CR0,0,673,1000_AL_.jpg'
+          director: 'Paul Verhoeven',
+          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYzU1YmJjMGEtMjY4Yy00MTFlLWE3NTUtNzI3YjkwZTMxZjZmXkEyXkFqcGdeQXVyNDc2NjEyMw@@._V1_SY1000_CR0,0,673,1000_AL_.jpg',
+          plot: 'When a man goes for virtual vacation memories of the planet Mars, an unexpected and harrowing series of events forces him to go to the planet for real - or does he?'
         }
       ]
     };
   }
 
+  handleInfoClick(movieInfo) {
+    console.log('Movie info caled');
+    //Set the state, then show the component
+    this.setState({
+      movie: movieInfo,
+      showInfoPanel: true
+    })
+  }//End handleInfoClick
 
 
   handleSearchBarClick(event) {
+
+  }
+
+  getMovieInfo() {
 
   }
 
@@ -34,7 +59,8 @@ class App extends Component {
       <div className="App">
         <h1>Awesome Movies</h1>
         <SearchBar />
-        <MovieList movies={this.state.movies} />
+        {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie}/> : null}
+        <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
       </div>
     );
   }

@@ -12,7 +12,10 @@ class MovieList extends Component {
               key={movie._id}
               id={movie._id}
               title={movie.title}
+              director={movie.director}
               poster={movie.poster}
+              plot={movie.plot}
+              handleInfoClick={this.props.handleInfoClick.bind(this)}
             />
           )
         }

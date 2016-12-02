@@ -1,3 +1,7 @@
+.App {
+
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,7 +14,47 @@ h1 {
   color: #dbe4ed;
 }
 
-.box {
+/***Search Bar ****************************************************************/
+.search-bar {
+  width: 25em;
+  height: 2em;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  width: 5em;
+  height: 2.5em;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+/***Info Panel ****************************************************************/
+.info-panel {
+  margin: 5px;
+  background-color: #000;
+  border: solid white 2px;
+  width: auto;
+  padding: 5px;
+}
+
+.info-panel h1,h2,h3,h4,p {
+  color: #fff;
+}
+
+.infoPoster img {
+  width: 200px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.movieInfo {
+
+}
+
+/*   *************************************************************************/
+
+#movie {
   border: solid black 2px;
   border-radius: 15px;
   padding: 5px;

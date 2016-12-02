@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   handleInfoClick(movieInfo) {
-    console.log('Movie info caled');
     //Set the state, then show the component
     this.setState({
       movie: movieInfo,
@@ -45,12 +44,11 @@ class App extends Component {
     })
   }//End handleInfoClick
 
-
-  handleSearchBarClick(event) {
-
+  closeInfoPanel() {
+    this.setState({showInfoPanel: false})
   }
 
-  getMovieInfo() {
+  handleSearchBarClick(event) {
 
   }
 
@@ -59,7 +57,7 @@ class App extends Component {
       <div className="App">
         <h1>Awesome Movies</h1>
         <SearchBar />
-        {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie}/> : null}
+        {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
         <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
       </div>
     );

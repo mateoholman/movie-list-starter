@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import InfoPanel from './InfoPanel';
-// import axios from 'axios';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -48,15 +48,16 @@ class App extends Component {
     this.setState({showInfoPanel: false})
   }
 
-  handleSearchBarClick(event) {
-
+  handleSearchBarClick(searchTerm) {
+    axios.get(`http://www.omdbapi.com/?t=${searchTerm}&plot=short&r=json`)
+      .then(resp => console.log(resp.data));
   }
 
   render() {
     return (
       <div className="App">
         <h1>Awesome Movies</h1>
-        <SearchBar />
+        <SearchBar onSearch={this.handleSearchBarClick.bind(this)} />
         {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
         <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
       </div>

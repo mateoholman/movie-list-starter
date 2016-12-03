@@ -14,7 +14,7 @@ class Movie extends Component {
         <div className='moviePoster'>
           <img src={this.props.poster} alt='A cool movie poster' onClick={this.handleClick.bind(this)} />
         </div>
-        <div className='movieTitle'>
+        <div className='movie-title'>
           <h2>{this.props.title}</h2>
         </div>
       </div>

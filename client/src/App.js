@@ -77,7 +77,9 @@ class App extends Component {
         <h1>Awesome Movies</h1>
         <SearchBar onSearch={this.handleSearchBarClick.bind(this)} />
         {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
-        <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
+        <div className="movie-panel">
+          <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
+        </div>
       </div>
     );
   }

@@ -49,8 +49,26 @@ class App extends Component {
   }
 
   handleSearchBarClick(searchTerm) {
-    axios.get(`http://www.omdbapi.com/?t=${searchTerm}&plot=short&r=json`)
-      .then(resp => console.log(resp.data));
+    //Search the OMDB API for the search term.
+    axios.get(`http://www.omdbapi.com/?t=${searchTerm}&type=movie&plot=short&r=json`)
+      .then(resp => {
+        //If the movie can't be found in the OMDB API, alert the user
+        if (resp.data.Response === 'False') {
+          alert("Ain't no movie with the title " + searchTerm + ". Try again!");
+        }
+        else {
+        //If the movie was found. Show the info panel with the searched movie data.
+        this.setState({
+          movie: {
+            title: resp.data.Title,
+            director: resp.data.Director,
+            poster: resp.data.Poster,
+            plot: resp.data.Plot
+          },
+          showInfoPanel: true
+        })}
+      })
+    .catch(err => console.log(err))
   }
 
   render() {

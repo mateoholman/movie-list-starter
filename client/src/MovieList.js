@@ -16,6 +16,7 @@ class MovieList extends Component {
               poster={movie.poster}
               plot={movie.plot}
               handleInfoClick={this.props.handleInfoClick.bind(this)}
+              handleDelClick={this.props.handleDelClick.bind(this)}
             />
           )
         }

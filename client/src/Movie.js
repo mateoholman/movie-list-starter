@@ -8,6 +8,11 @@ class Movie extends Component {
     this.props.handleInfoClick(this.props);
   }
 
+  handleCloseClick(event){
+    event.preventDefault();
+    this.props.handleDelClick(this.props.id);
+  }
+
   render() {
     return(
       <div className='box' id='movie'>
@@ -17,6 +22,7 @@ class Movie extends Component {
         <div className='movie-title'>
           <h2>{this.props.title}</h2>
         </div>
+        <i className="fa fa-times-circle" aria-hidden="true" onClick={this.handleCloseClick.bind(this)}></i>
       </div>
     );
   }

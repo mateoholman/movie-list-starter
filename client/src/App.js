@@ -46,6 +46,26 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteMovie(movieId) {
+    //Get the current movie list
+    const movies = this.state.movies;
+    //Find the index of the movie that we want to delete
+    const index = movies.map((movie) => movie._id).indexOf(movieId);
+    //Create a new contacts array without the contact we want to delete
+    const newMovies = movies.slice(0, index).concat(movies.slice(index+1));
+
+    axios.delete(`http://localhost:3001/api/movie/${movieId}`)
+      .then(resp => {
+        this.setState(prev => {
+          return {
+            ...prev,
+            movies: newMovies
+          };
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   handleSearchBarClick(searchTerm) {
     //Search the OMDB API for the search term.
     axios.get(`http://www.omdbapi.com/?t=${searchTerm}&type=movie&plot=short&r=json`)
@@ -78,7 +98,7 @@ class App extends Component {
         <SearchBar onSearch={this.handleSearchBarClick.bind(this)} />
         {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} addNewMovie={this.addNewMovie.bind(this)} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
         <div className="movie-panel">
-          <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
+          <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} handleDelClick={this.deleteMovie.bind(this)} />
         </div>
       </div>
     );

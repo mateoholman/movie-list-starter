@@ -84,6 +84,16 @@ class App extends Component {
     );
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3001/api/movie')
+      .then(resp => {
+        this.setState({
+          movies: resp.data
+        })
+      })
+      .catch(err => console.log(`Error! ${err}`));
+  }
+
 }//End App Component
 
 export default App;

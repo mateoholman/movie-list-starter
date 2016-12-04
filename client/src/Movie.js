@@ -17,12 +17,13 @@ class Movie extends Component {
     return(
       <div className='box' id='movie'>
         <div className='moviePoster'>
-          <img src={this.props.poster} alt='A cool movie poster' onClick={this.handleClick.bind(this)} />
+          <i className="fa fa-times-circle right-corner" aria-hidden="true" onClick={this.handleCloseClick.bind(this)}></i>
+          <i className="fa fa-info-circle left-corner" aria-hidden="true" onClick={this.handleClick.bind(this)}></i>
+          <img src={this.props.poster} alt='A cool movie poster' />
         </div>
         <div className='movie-title'>
           <h2>{this.props.title}</h2>
         </div>
-        <i className="fa fa-times-circle" aria-hidden="true" onClick={this.handleCloseClick.bind(this)}></i>
       </div>
     );
   }

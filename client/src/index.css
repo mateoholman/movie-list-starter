@@ -47,6 +47,38 @@ h1 {
   float: right;
 }
 
+.fa-times-circle {
+  font-size: 25px;
+  color: #9c0a0a;
+}
+
+.fa-times-circle:hover {
+  color: #5d0606;
+}
+
+.fa-info-circle {
+  font-size: 25px;
+  color: blue;
+}
+
+.fa-info-circle:hover {
+  color: darkblue;
+}
+
+.right-corner {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 1;
+}
+
+.left-corner {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  z-index: 1;
+}
+
 /***Search Bar ****************************************************************/
 .search-bar {
   width: 25em;
@@ -82,18 +114,6 @@ h1 {
   margin-right: 20px;
 }
 
-.fa-times-circle {
-  position: relative;
-  top: 0;
-  right: 0;
-  font-size: 25px;
-  color: #9c0a0a;
-}
-
-.fa-times-circle:hover {
-  color: #5d0606;
-}
-
 /***Movie Panel****************************************************************/
 
 #movie {
@@ -105,6 +125,7 @@ h1 {
   background-color: #a3bad2;
   text-align: center;
   font-family: 'IM Fell English', serif;
+  position: relative;
 }
 
 #movie:hover {

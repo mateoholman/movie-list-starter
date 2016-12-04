@@ -14,7 +14,7 @@ module.exports = {
   },
 
   create(req, res, next) {
-    const { avatar, name, occupation } = req.body;
+    const { title, director, poster, plot } = req.body;
     const movie = new MovieModel({ title, director, poster, plot }).save()
       .then(movie => res.json(movie))
       .catch(next);

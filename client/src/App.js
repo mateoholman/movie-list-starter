@@ -17,22 +17,7 @@ class App extends Component {
         poster: '',
         plot: ''
       },
-      movies: [
-        {
-          _id: '1',
-          title: 'Princess Mononoke',
-          director: 'Hayao Miyazaki',
-          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYTU2YjNmN2UtMTkyYS00YTFhLWJkM2QtODNhODE0OGQzMDQ3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
-          plot: "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."
-        },
-        {
-          _id: '2',
-          title: 'Total Recall',
-          director: 'Paul Verhoeven',
-          poster: 'https://images-na.ssl-images-amazon.com/images/M/MV5BYzU1YmJjMGEtMjY4Yy00MTFlLWE3NTUtNzI3YjkwZTMxZjZmXkEyXkFqcGdeQXVyNDc2NjEyMw@@._V1_SY1000_CR0,0,673,1000_AL_.jpg',
-          plot: 'When a man goes for virtual vacation memories of the planet Mars, an unexpected and harrowing series of events forces him to go to the planet for real - or does he?'
-        }
-      ]
+      movies: []
     };
   }
 
@@ -48,6 +33,19 @@ class App extends Component {
     this.setState({showInfoPanel: false})
   }
 
+  addNewMovie(newMovie) {
+    const { title, director, poster, plot } = newMovie;
+    // console.log('The new movie is: ' + poster);
+    axios.post('http://localhost:3001/api/movie/', { title, director, poster, plot })
+      .then(resp => {
+        const movie = resp.data;
+        this.setState({
+            movies: [movie, ...this.state.movies]
+          })
+        })
+      .catch(err => console.log(err));
+  }
+
   handleSearchBarClick(searchTerm) {
     //Search the OMDB API for the search term.
     axios.get(`http://www.omdbapi.com/?t=${searchTerm}&type=movie&plot=short&r=json`)
@@ -57,9 +55,11 @@ class App extends Component {
           alert("Ain't no movie with the title " + searchTerm + ". Try again!");
         }
         else {
-        //If the movie was found. Show the info panel with the searched movie data.
+        //If the movie was found, set the current state of movie to the movie
+        //found in the OMDB database and show it in the info panel.
         this.setState({
           movie: {
+            _id: resp.data.imdbID,
             title: resp.data.Title,
             director: resp.data.Director,
             poster: resp.data.Poster,
@@ -76,13 +76,14 @@ class App extends Component {
       <div className="App">
         <h1>Awesome Movies</h1>
         <SearchBar onSearch={this.handleSearchBarClick.bind(this)} />
-        {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
+        {this.state.showInfoPanel ? <InfoPanel movie={this.state.movie} addNewMovie={this.addNewMovie.bind(this)} closeInfoPanel={this.closeInfoPanel.bind(this)}/> : null}
         <div className="movie-panel">
           <MovieList movies={this.state.movies} handleInfoClick={this.handleInfoClick.bind(this)} />
         </div>
       </div>
     );
   }
-}
+
+}//End App Component
 
 export default App;
